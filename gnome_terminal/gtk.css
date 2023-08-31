@@ -1,0 +1,9 @@
+/* remove the default padding from gnome-terminal so the tmux status bar is
+ * actually at the bottom of the screen */ 
+VteTerminal,
+vte-terminal,
+TerminalScreen {
+  padding: 0px;
+  margin: 0px;
+  -VteTerminal-inner-border: 0px;
+}

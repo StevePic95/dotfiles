@@ -5,6 +5,3 @@ racr_repo="$HOME/Source/AVResearch/RACR_AI/"
 if [ -e "$racr_repo" ]; then
 	export PYTHONPATH="${PYTHONPATH}:$racr_repo"
 fi
-
-# add pyenv to path for Python interpreter version control
-export PYENV_ROOT="$HOME/.pyenv"

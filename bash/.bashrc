@@ -68,3 +68,8 @@ init_pyenv
 
 # TODO: does this need to be here?
 export PYTHON
+
+# if (1) the tmux command is available, (2) we're in an interactive shell, (3) tmux isn't trying to run within itself
+if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+	exec tmux new-session -A -s main
+fi
