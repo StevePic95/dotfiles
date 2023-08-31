@@ -1,0 +1,13 @@
+# all additions to the PATH variable go here (e.g., "export PATH=...")
+
+# add Nvidia ngc cli commands to PATH
+export PATH=~/Nvidia/ngc-cli:${PATH}
+
+# add the my_commands directory to PATH
+export PATH=~/Source/my_commands:${PATH}
+
+# for nvidia drivers to work
+export PATH=/usr/local/cuda-12.0/bin${PATH:+:${PATH}}
+
+# The RACR_AI repo
+export PATH=~/Source/AVResearch/RACR_AI:${PATH}

@@ -1,0 +1,23 @@
+# My special aliases go here. Note the comment and overall format of the file, which allows for easy
+# parsing so eventually I can write a script that lists all custom aliases.
+
+###
+# TITLE: Start Git Server Here
+# DESCRIPTION: Starts a git server for other machines on the network to clone/push/pull from. (cd into the directory containing the repos before running)
+# EXAMPLES: (To serve all repos in the CWD)---sgsh|(To clone a repo from the server from a remote machine)---git clone git://<server-ip>/<repo-name>
+alias sgsh='git daemon --reuseaddr --base-path=. --export-all --verbose --enable=receive-pack'
+###
+
+###
+# TITLE: Echo Clipboard
+# DESCRIPTION: Prints the contents of the system clipboard (the last text you copied)
+# EXAMPLES: (To write the clipboard contents to a text file)---ecb > textfile
+alias ecb='xclip -se c -o'
+###
+
+###
+# TITLE: Convert HEI[CF]
+# DESCRIPTION: Converts an heic/heif image to some other image type
+# EXAMPLES: (To convert an heic image to some other format)---cheix original.heic new_fn.<format>
+alias cheix='heif-convert'
+###
