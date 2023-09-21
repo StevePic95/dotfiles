@@ -11,63 +11,34 @@ esac
 # Store the path to the bash dotfile subdirectory for brevity
 bash_dotfiles="$HOME/dotfiles/bash"
 
-# Source the functions from .bash_functions
-if [ -f "$bash_dotfiles/.bash_functions" ]; then
-	. "$bash_dotfiles/.bash_functions"
-fi
+# The source files used by this file
+source_files=(
+  ".bash_prompt"
+  ".bash_custom_aliases"
+  ".bash_paths"
+  ".bash_secrets"
+  ".bash_functions"
+)
 
-# Configure the settings that control command history
-configure_history_settings
+# now actually source them
+for src in "${source_files[@]}"; do
+  src="$bash_dotfiles/$src"
+  if [ -f "$src" ]; then
+   # shellcheck disable=SC1090
+    . "$src"
+  fi
+done
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+configure_history_settings      # Configure the settings that control command history
+set_default_aliases             # Sets the aliases that came with the OS - I'm used to them now
+init_pyenv                      # Initialize pyenv and pyenv-virtualenv
+enable_programmable_completion  # Enable completion features, default setting in Pop OS
+eval_lesspipe                   # Make the less command more friendly for non-text input files
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s checkwinsize           # check window size after commands and updates LINES and COLUMNS
+shopt -s globstar               # the pattern "**" used in fp expansion will recursively match dirs
+set -o vi                       # set a vi-style line editing interface
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-set_default_aliases
-
-# source the prompt file
-if [ -f "$bash_dotfiles/.bash_prompt" ]; then
-	. "$bash_dotfiles/.bash_prompt"
-fi
-
-# source the custom alias file
-if [ -f "$bash_dotfiles/.bash_custom_aliases" ]; then
-	. "$bash_dotfiles/.bash_custom_aliases"
-fi
-
-# source the PATH file
-if [ -f "$bash_dotfiles/.bash_paths" ]; then
-	. "$bash_dotfiles/.bash_paths"
-fi
-
-# source the secrets file
-if [ -f "$bash_dotfiles/.bash_secrets" ]; then
-	. "$bash_dotfiles/.bash_secrets"
-fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-	if [ -f /usr/share/bash-completion/bash_completion ]; then
-		. /usr/share/bash-completion/bash_completion
-	elif [ -f /etc/bash_completion ]; then
-		. /etc/bash_completion
-	fi
-fi
-
-# Initialize pyenv and pyenv-virtualenv
-init_pyenv
-
-# TODO: does this need to be here?
-export PYTHON
 
 # if (1) the tmux command is available, (2) we're in an interactive shell, (3) tmux isn't trying to run within itself
 if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
