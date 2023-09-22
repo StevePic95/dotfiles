@@ -1,0 +1,26 @@
+session_name: RACR
+windows:
+  - window_name: RACR_AI
+    start_directory: /home/stevepic95/Source/AVResearch/RACR_AI
+    layout: 0fd5,478x128,0,0{404x128,0,0[404x103,0,0,0,404x24,0,104{202x24,0,104,6,201x24,203,104,7}],73x128,405,0,4}
+    focus: 'true'
+    options:
+      automatic-rename: 'off'
+    panes:
+      - shell_command:
+          - nvim .
+        focus: 'true'
+      - pane
+      - pane
+      - shell_command:
+          - python
+  - window_name: OLD
+    start_directory: /home/stevepic95/Source/AVResearch/OLD_RACR_AI
+    layout: 7a28,478x128,0,0{239x128,0,0,8,238x128,240,0,9}
+    options:
+      automatic-rename: 'off'
+    panes:
+      - shell_command:
+          - nvim .
+        focus: 'true'
+      - pane
