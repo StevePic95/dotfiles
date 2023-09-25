@@ -35,3 +35,11 @@ alias kts='tmux kill-server'
 # EXAMPLES: Open a workspace named RACR.yaml::ows RACR
 alias ows='tmuxp load'
 ###
+
+###
+# TITLE: Freeze WorkSpace
+# DESCRIPTION: Use tmuxp to freeze the current workspace
+# EXAMPLES: Freeze your current workspace::fws
+alias fws='tmuxp freeze'
+###
+
