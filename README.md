@@ -12,6 +12,7 @@ Some of the nice features that come with this repo.
 * Theme has been set to catppuccin/macchiato with a nice informative status bar 
 * Window and pane navigation has been set to integrate flawlessly with neovim when it's active in one of your panes
 * Mouse is enabled
+* tmuxp is set up to allow users to freeze and load workspace presets, and the aliases `ows` (Open WorkSpace) and `fws` (Freeze WorkSpace) have been set for ease of use
 
 ### Neovim
 * The Neovim configuration is based on the Lazyvim starter config
