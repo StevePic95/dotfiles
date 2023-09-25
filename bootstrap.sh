@@ -22,8 +22,8 @@ cd ~/.config/ && ln -s "$(echo "$ROOT/nvim")" .
 
 if [[ -e "$HOME/.config/tmux" ]]; then
   mv "$HOME/.config/tmux" "$HOME/old_dotfiles_bkp/.config/"
-  mkdir "$HOME/.config/tmux"
 fi
+mkdir "$HOME/.config/tmux"
 cd ~/.config/tmux/ && ln -s "$(echo "$ROOT/tmux/tmux.conf")" .
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
