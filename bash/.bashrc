@@ -39,8 +39,23 @@ shopt -s checkwinsize           # check window size after commands and updates L
 shopt -s globstar               # the pattern "**" used in fp expansion will recursively match dirs
 set -o vi                       # set a vi-style line editing interface
 
+# user hits enter to attach directly to tmux
+if
+  # the tmux command is available
+  command -v tmux &>/dev/null   &&
+  # we're in an interactive shell
+  [ -n "$PS1" ]                 &&
+  # tmux isn't trying to run within itself
+  [[ ! "$TERM" =~ screen ]]     &&
+  [[ ! "$TERM" =~ tmux ]]       &&
+  [ -z "$TMUX" ]; then
 
-# if (1) the tmux command is available, (2) we're in an interactive shell, (3) tmux isn't trying to run within itself
-if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-	exec tmux new-session -A -s main
+  # now that we know it's ok, ask the user
+  printf "Start in main tmux session? [y]/n "
+  read -r ans
+  if [[ -z "$ans" ]] || [[ "${ans,,}" != "n" ]]; then
+    exec tmux new-session -A -s main
+  else
+    clear
+  fi
 fi
