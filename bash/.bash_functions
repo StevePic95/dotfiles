@@ -67,3 +67,15 @@ enable_programmable_completion() {
 eval_lesspipe() {
   [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 }
+
+# Loads and enables bash completions for Node Version Manager (nvm)
+init_nvm() {
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
+
+# Adds compiled Go executables to PATH
+add_go_bin_to_path() {
+  export PATH=~/go/bin:${PATH}
+}
