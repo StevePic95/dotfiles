@@ -35,6 +35,9 @@ set_default_aliases             # Sets the aliases that came with the OS - I'm u
 enable_programmable_completion  # Enable completion features, default setting in Pop OS
 eval_lesspipe                   # Make the less command more friendly for non-text input files
 set_host_id                     # Used to figure out which host the script is running on
+shopt -s checkwinsize           # check window size after commands and updates LINES and COLUMNS
+shopt -s globstar               # the pattern "**" used in fp expansion will recursively match dirs
+set -o vi                       # set a vi-style line editing interface
 
 # Functions run only on my laptop
 if [[ $DOTFILE_HOST_ID == "e54fc0399347b5ccf800e22152daf65fb3d86ffbc4da0d009f6cf13e3250599c" ]]; then
@@ -45,11 +48,6 @@ if [[ $DOTFILE_HOST_ID == "e54fc0399347b5ccf800e22152daf65fb3d86ffbc4da0d009f6cf
 elif [[ $DOTFILE_HOST_ID == "a960ea7d4c3951d07549f2c8d9922892e64cf1ee3b12b3af8914d07c42d48734" ]]; then
   add_go_bin_to_path            # Executables built with Go (lazygit is one)
 fi
-
-
-shopt -s checkwinsize           # check window size after commands and updates LINES and COLUMNS
-shopt -s globstar               # the pattern "**" used in fp expansion will recursively match dirs
-set -o vi                       # set a vi-style line editing interface
 
 # user hits enter to attach directly to tmux
 if
