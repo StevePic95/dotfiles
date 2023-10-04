@@ -79,3 +79,10 @@ init_nvm() {
 add_go_bin_to_path() {
   export PATH=~/go/bin:${PATH}
 }
+
+# Sets the host id used to figure out which computer we're on 
+set_host_id() {
+  HOSTNAME=$(hostname)
+  DOTFILE_HOST_ID=$(echo "$HOSTNAME" | sha256sum | awk '{print $1}')
+  export DOTFILE_HOST_ID=$DOTFILE_HOST_ID
+}
