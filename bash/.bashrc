@@ -48,25 +48,3 @@ if [[ $DOTFILE_HOST_ID == "e54fc0399347b5ccf800e22152daf65fb3d86ffbc4da0d009f6cf
 elif [[ $DOTFILE_HOST_ID == "a960ea7d4c3951d07549f2c8d9922892e64cf1ee3b12b3af8914d07c42d48734" ]]; then
   add_go_bin_to_path            # Executables built with Go (lazygit is one)
 fi
-
-# user hits enter to attach directly to tmux
-if
-  # the tmux command is available
-  command -v tmux &>/dev/null   &&
-  # we're in an interactive shell
-  [ -n "$PS1" ]                 &&
-  # tmux isn't trying to run within itself
-  [[ ! "$TERM" =~ screen ]]     &&
-  [[ ! "$TERM" =~ tmux ]]       &&
-  [ -z "$TMUX" ]; then
-
-  # now that we know it's ok, ask the user
-  printf "Start in main tmux session? [y]/n "
-  read -r ans
-  if [[ -z "$ans" ]] || [[ "${ans,,}" != "n" ]]; then
-    exec tmux new-session -A -s main
-  else
-    clear
-  fi
-fi
-
