@@ -44,9 +44,9 @@ alias fws='tmuxp freeze'
 ###
 
 ###
-# TITLE: Freeze WorkSpace
-# DESCRIPTION: Use tmuxp to freeze the current workspace
-# EXAMPLES: Freeze your current workspace::fws
-alias tracr='cd /home/stevepic95/Source/AVResearch/RACR_AI/ && python app.py'
+# TITLE: tracr invocation
+# DESCRIPTION: invoke the tracr CLI
+# EXAMPLES: Run an experiment named "test-exp"::tracr experiment run test-exp
+alias tracr='cd /home/stevepic95/Source/AVResearch/RACR_AI/ && run.sh'
 ###
 
