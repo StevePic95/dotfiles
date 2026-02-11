@@ -1,0 +1,7 @@
+# all exports besides PATH go here
+
+# example: conditionally add a directory to PYTHONPATH for module imports
+# my_repo="$HOME/Source/my_project/"
+# if [[ -e "$my_repo" ]]; then
+# 	export PYTHONPATH="${PYTHONPATH}:$my_repo"
+# fi

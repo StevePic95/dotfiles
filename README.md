@@ -1,37 +1,66 @@
 # dotfiles
-The dotfile repo I use to backup and port my dev environment
+The dotfile repo I use to backup and port my dev environment.
+
+## Quick Start
+```bash
+git clone https://github.com/StevePic95/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+./bootstrap.sh
+```
+The bootstrap script is idempotent -- run it again anytime to pick up changes or finish a partial install.
+
+Run `features` after setup to see a complete guide of everything available.
 
 ## Features
-Some of the nice features that come with this repo.
+
+### zsh
+* Modular config split into separate files (prompt, aliases, paths, exports, functions, secrets)
+* Vi-mode line editing
+* Enhanced completion with case-insensitive matching and menu selection
+* History shared across sessions (10,000 entries)
+* Auto-cd, extended globbing, dotfile matching
+* **zsh-autosuggestions**: ghost text from history, accept with right arrow
+* **zsh-syntax-highlighting**: valid commands green, errors red as you type
+* Auto-attaches to tmux session "main" on terminal open
+
+### Starship Prompt
+* Shows git branch/status, python venv, node version, rust, docker context
+* Command duration for long-running commands
+* Vi-mode indicator in prompt character
+
+### fzf (Fuzzy Finder)
+* `Ctrl+R` - fuzzy search command history
+* `Ctrl+T` - fuzzy search files
+* `Alt+C` - fuzzy cd into subdirectory
+* `**<TAB>` - trigger fzf completion
 
 ### tmux
-* The terminal is automatically attached to a tmux session called "main". If it doesn't already exist, it is created first. This behavior is set in the `.bashrc` file. To detach from the session (e.g., close the terminal but keep it saved in the background for later), use the `<leader> d` command.
-  * In effect, this behavior mimics the way modern IDEs are "just the way you left them" when you exit and come back.
-  * As of this commit, the session isn't persisted between reboots, but I may add this feature using tmux-ressurect.
-* The leader for tmux has been changed to `CTRL + SPACE` for ease of use.
-* Theme has been set to catppuccin/macchiato with a nice informative status bar 
-* Window and pane navigation has been set to integrate flawlessly with neovim when it's active in one of your panes
-* Mouse is enabled
-* tmuxp is set up to allow users to freeze and load workspace presets, and the aliases `ows` (Open WorkSpace) and `fws` (Freeze WorkSpace) have been set for ease of use
+* Prefix: `Ctrl+Space`, mouse enabled, vi copy mode
+* Seamless vim/tmux pane navigation with `Ctrl+H/J/K/L`
+* Theme: catppuccin macchiato with informative status bar
+* tmux-yank for clipboard, new panes open in CWD
+* tmuxp workspace presets with `ows` / `fws` aliases
+* Plugins auto-installed by bootstrap
 
 ### Neovim
-* The Neovim configuration is based on the Lazyvim starter config
-* A language server for bash scripting has been configured
+* Based on LazyVim starter config
+* LSP support for 14 languages via mason (auto-installed)
+* Seamless tmux pane navigation
 
-### bash
-* Bash configs have been split logically into separate files for organization
-* Helpful aliases have been set in a file with comments formatted for easy parsing by scripts that display custom aliases (in case I forget)
+## What the Bootstrap Script Installs
+* **zsh** + autosuggestions + syntax-highlighting plugins
+* **Starship** prompt
+* **fzf** fuzzy finder
+* **tmux** + tpm (auto-installs plugins) + tmuxp (workspace presets)
+* **Neovim** (via PPA)
+* **Node.js** (via nvm, for mason LSP servers)
+* **pyenv** + build dependencies
+* **ripgrep**, **fd-find**, **wslu**
+* **Claude Code** config symlinks
 
-### gnome-terminal
-* Remove the default padding from the bottom of the terminal window so the tmux status bar is actually at the bottom
-
-
-## Installation Steps
-Eventually, there should be a bootstrap script to install the necessary dependencies, but until then, I'm just keeping track of them here.k"
-
-### Language Server for Bash
-(bash-language-server instructions)[https://github.com/bash-lsp/bash-language-server]
-1. For Neovim, we must install the server binary
-2. Then, we need to add the autocmd that invokes `bash-language-server` when a ".sh" file is opened
-
-
+## After Setup
+1. Open a new terminal to start zsh
+2. Open nvim -- plugins will auto-install on first launch
+3. Install a Python version with `pyenv install 3.x.x`
+4. Create `~/dotfiles/zsh/.zsh_secrets` for sensitive environment variables (gitignored)
+5. Run `features` to see everything available

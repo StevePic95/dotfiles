@@ -1,0 +1,8 @@
+# all additions to the PATH variable go here (e.g., "export PATH=...")
+# paths are only added if the directory actually exists
+
+# user's private bin (pip/pipx installed tools, claude, etc.)
+[[ -d ~/.local/bin ]] && export PATH=~/.local/bin:${PATH}
+
+# example: conditionally add a directory to PATH only if it exists
+# [[ -d ~/my_tools/bin ]] && export PATH=~/my_tools/bin:${PATH}

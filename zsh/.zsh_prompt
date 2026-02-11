@@ -1,0 +1,5 @@
+# The prompt is handled by Starship (https://starship.rs)
+# Configuration lives at ~/dotfiles/starship/starship.toml
+# (symlinked to ~/.config/starship.toml)
+
+eval "$(starship init zsh)"

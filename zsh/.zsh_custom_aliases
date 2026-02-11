@@ -1,0 +1,65 @@
+# My special aliases go here. Note the comment and overall format of the file, which allows for easy
+# parsing so eventually I can write a script that lists all custom aliases.
+
+###
+# TITLE: Start Git Server Here
+# DESCRIPTION: Starts a git server for other machines on the network to clone/push/pull from. cd into the directory containing the repos before running
+# EXAMPLES: To serve all repos in the CWD::sgsh||To clone a repo from the server from a remote machine::git clone git://<server-ip>/<repo-name>
+alias sgsh='git daemon --reuseaddr --base-path=. --export-all --verbose --enable=receive-pack'
+###
+
+###
+# TITLE: Echo Clipboard
+# DESCRIPTION: Prints the contents of the system clipboard (uses PowerShell on WSL)
+# EXAMPLES: To write the clipboard contents to a text file::ecb > textfile
+alias ecb='powershell.exe -command "Get-Clipboard" 2>/dev/null'
+###
+
+###
+# TITLE: Convert HEI[CF]
+# DESCRIPTION: Converts an heic/heif image to some other image type
+# EXAMPLES: To convert an heic image to some other format::cheix original.heic new_fn.<format>
+alias cheix='heif-convert'
+###
+
+###
+# TITLE: Kill Tmux Server
+# DESCRIPTION: Kills all panes, windows, and sessions. Basically just closes tmux.
+# EXAMPLES: To close all tmux windows and panes::kts
+alias kts='tmux kill-server'
+###
+
+###
+# TITLE: Open WorkSpace
+# DESCRIPTION: Use tmuxp to open a workspace preset
+# EXAMPLES: Open a workspace named RACR.yaml::ows RACR
+alias ows='tmuxp load'
+###
+
+###
+# TITLE: Freeze WorkSpace
+# DESCRIPTION: Use tmuxp to freeze the current workspace
+# EXAMPLES: Freeze your current workspace::fws
+alias fws='tmuxp freeze'
+###
+
+###
+# TITLE: List Special Aliases
+# DESCRIPTION: Displays all custom aliases with their descriptions and examples in a formatted table
+# EXAMPLES: To see all your custom aliases::lsa
+alias lsa='python3 ~/dotfiles/scripts/command_line_tools/list_custom_aliases/list_custom_aliases.py'
+###
+
+###
+# TITLE: Open in Windows
+# DESCRIPTION: Opens a file or directory in the default Windows application (WSL only)
+# EXAMPLES: Open the current directory in Windows Explorer::open .||Open a file in its default Windows app::open file.pdf
+alias open='wslview'
+###
+
+###
+# TITLE: Dotfiles Features
+# DESCRIPTION: Displays a complete guide of all features provided by the dotfiles setup
+# EXAMPLES: To see all available features::features
+alias features='~/dotfiles/scripts/command_line_tools/dotfiles_features/dotfiles_features.sh'
+###

@@ -1,0 +1,73 @@
+# Functions used in the main zsh config file (.zshrc) are defined here
+
+# initialize nvm (node version manager, needed for mason LSP servers)
+init_nvm() {
+	export NVM_DIR="$HOME/.nvm"
+	if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+		source "$NVM_DIR/nvm.sh"
+	fi
+}
+
+# initialize pyenv
+init_pyenv() {
+	export PYENV_ROOT="$HOME/.pyenv"
+	[[ -d "$PYENV_ROOT/bin" ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+	if command -v pyenv &>/dev/null; then
+		eval "$(pyenv init -)"
+		eval "$(pyenv virtualenv-init -)" 2>/dev/null
+	fi
+}
+
+# configure history settings
+configure_history_settings() {
+	HISTFILE=~/.zsh_history
+	HISTSIZE=10000
+	SAVEHIST=10000
+
+	setopt HIST_IGNORE_DUPS       # don't record duplicate entries
+	setopt HIST_IGNORE_SPACE      # don't record entries starting with space
+	setopt APPEND_HISTORY         # append to the history file, don't overwrite
+	setopt SHARE_HISTORY          # share history between all sessions
+	setopt HIST_REDUCE_BLANKS     # remove superfluous blanks from history
+	setopt INC_APPEND_HISTORY     # write to history immediately, not on shell exit
+}
+
+# set the default aliases that came with the OS
+set_default_aliases() {
+	# enable color support of ls and also add handy aliases
+	if [[ -x /usr/bin/dircolors ]]; then
+		test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+		alias ls='ls --color=auto'
+
+		alias grep='grep --color=auto'
+		alias fgrep='fgrep --color=auto'
+		alias egrep='egrep --color=auto'
+	fi
+
+	# colored GCC warnings and errors
+	export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+	# some more ls aliases
+	alias ll='ls -alF'
+	alias la='ls -A'
+	alias l='ls -CF'
+}
+
+# set up the zsh completion system
+setup_completion() {
+	autoload -Uz compinit && compinit
+
+	# case-insensitive completion
+	zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+	# highlight current selection in menu
+	zstyle ':completion:*' menu select
+	# group completions by type
+	zstyle ':completion:*' group-name ''
+	# show descriptions for options
+	zstyle ':completion:*' verbose yes
+}
+
+# make less more friendly for non-text input files, see lesspipe(1)
+eval_lesspipe() {
+	[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
+}

@@ -5,7 +5,7 @@ from sys import exit as exit_with_code
 from re import findall
 from rich import print as rprint
 
-CUSTOM_ALIAS_FP = Path.home() / "dotfiles" / "bash" / ".bash_custom_aliases"
+CUSTOM_ALIAS_FP = Path.home() / "dotfiles" / "zsh" / ".zsh_custom_aliases"
 FILE_PATTERN = r'###\s*#\s*TITLE:\s*(.*)\n\s*#\s*DESCRIPTION:\s*(.*)\n\s*#\s*EXAMPLES:\s*(.*)\n\s*alias\s*(\w*)=(.*)\n###'
 
 

@@ -1,7 +1,7 @@
 session_name: dotfiles
 windows:
   - window_name: dotfiles
-    start_directory: /home/stevepic95/dotfiles
+    start_directory: ~/dotfiles
     focus: 'true'
     layout: 7742,478x128,0,0{364x128,0,0,0,113x128,365,0[113x64,365,0,1,113x63,365,65,2]}
     options:
